@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+    <head>
+        <title>fox.js samples</title>
+        <script src="fox.js"></script>
+        <style>
+            html {font-family:sans-serif;}
+            h2 {padding-top:1em;margin-top:1em;border-top:1px solid #aaa;}
+            code {white-space:pre; border:1px solid #aaa; background:#eee; display:inline-block; padding:1em}
+            td {border:2px solid black; padding:1em}
+            img {width:20px; height:20px; background-color:#f00;}
+        </style>
+
+    </head><body><h1>fox.js examples</body>
+
+<script>
+[
+
+{title: 'HTMLTableElement of a simple table with one cell', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+---+",
+            "|A  |",
+            "+---+",
+        ])
+    );
+}},
+
+{title: 'HTML string of a simple table with one cell', func:
+function () {
+    var div = document.createElement('div');
+    div.innerHTML = (
+        Fox.makeLayout([
+            "+---+",
+            "|A  |",
+            "+---+",
+        ], {
+            output:'html'
+        })
+    );
+    document.body.appendChild(div);
+}},
+
+{title: 'Raw object representation of a simple table with one cell', func:
+function () {
+    var div = document.createElement('div');
+    div.innerHTML = JSON.stringify(
+        Fox.makeLayout([
+            "+---+",
+            "|A  |",
+            "+---+",
+        ], {
+            output:'obj'
+        })
+    );
+    document.body.appendChild(div);
+}},
+
+{title: 'Multi-rows and columns with debug', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+---+---+---+",
+            "|A  |B  |C  |",
+            "+---+---+---+",
+            "|D  |E  |F  |",
+            "+---+---+---+",
+        ], {
+            debug: true
+        })
+    );
+}},
+
+{title: 'Cells spanning columns', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+-----------+",
+            "|A          |",
+            "+---+---+---+",
+            "|B  |C  |D  |",
+            "+---+---+---+",
+            "|E  |F      |",
+            "+---+-------+",
+        ])
+    );
+}},
+
+{title: 'Cells spanning rows', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+---+---+---+",
+            "|A  |B  |C  |",
+            "|   +---+---+",
+            "|   |D  |E  |",
+            "|   +---+   |",
+            "|   |F  |   |",
+            "+---+---+---+",
+        ])
+    );
+}},
+
+{title: 'Mapping strings, elements or views to cells', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+---+---+",
+            "|a  |b  |",
+            "+---+---+",
+            "|c  |d  |",
+            "+---+---+",
+        ], {
+            map: {
+                a: "The letter A",
+                b: document.createElement('img'),
+                c: {id:'myView', el:document.createElement('img')}
+            }
+        })
+    );
+}},
+
+{title: 'Complex spanning', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+-----------+---+",
+            "|A          |B  |",
+            "|---+-------+---+",
+            "|C  |D          |",
+            "|   |           |",
+            "|   |           |",
+            "|   +---+-------+",
+            "|   |E  |F      |",
+            "+---+---+-------+",
+        ])
+    );
+}},
+
+{title: 'Complex spanning with size hints', func:
+function () {
+    document.body.appendChild(
+        Fox.makeLayout([
+            "+-----------+---+",
+            "|a          |b  |",
+            "|---+-------+---+",
+            "|c  |d          |",
+            "|   |           |",
+            "|   |           |",
+            "|   +---+-------+",
+            "|   |e  |f      |",
+            "+---+---+-------+",
+        ], {
+            debug:true,
+            map: {
+                a: "Toolbar",
+                b: "Menu",
+                c: "Sidebar",
+                d: "Canvas",
+                e: "Button",
+                f: "Button"
+            },
+            styles: {
+                table: {'border-collapse':'collapse'},
+                a: {width: '80%', background: '#ccc'},
+                b: {width: '20%'},
+                c: {width: '20%', background: '#777'},
+                d: {height: '150px', width: '80%'},
+                e: {width: '20%'},
+                f: {width: '60%'}
+            }
+        })
+    );
+}},
+
+
+].forEach(function (example) {
+    var write = function (tag, html) {
+        var el = document.createElement(tag);
+        el.innerHTML = html;
+        document.body.appendChild(el);
+    }
+    write('h2', example.title);
+    write('h3', "Code:");
+    write('code', example.func);
+    write('h3', "Output:");
+    example.func();
+});
+//shame about the indents
+
+</script>
+
+</html>
