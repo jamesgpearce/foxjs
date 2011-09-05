@@ -142,11 +142,11 @@ Using an object in the same way as for the map above, you can also add specific 
         })
     );
 
-Use the string-based versions of CSS property names as the objects' properties. For example, to specify a maximum width, use <code>'max-width'</code> rather than <code>'maxWidth'</code>.
+Use the string-based versions of CSS property names as the objects' properties. For example, to specify a maximum width, use <code>'max-width'</code> rather than <code>maxWidth</code>.
 
 ### debug
 
-As it says on the tin. False by default, but set to <code>true</code> to <code>console.log()</code> the variables used while processing the table's art, as well as the outputted raw object. Not really much use to anyone except me for when things don't work properly.
+As it says on the tin. It's off by default, but set to <code>true</code> to log to the console the variables used while processing the table's art, as well as the outputted raw object. Not really much use to anyone except me for when things don't work properly.
 
 ## Browser support
 
