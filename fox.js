@@ -12,7 +12,7 @@ var Fox = {
             for (s in style) {
                 styleString += s + ':' + style[s] + ';';
             }
-            return styleString || '';
+            return styleString;
         }
     },
 
@@ -147,12 +147,16 @@ var Fox = {
                 } else {
                     cellElement.innerHTML = cell.content;
                 }
-                cellElement.setAttribute('style', cell.style);
+                if (cell.style) {
+                    cellElement.setAttribute('style', cell.style);
+                }
                 rowElement.appendChild(cellElement);
             }, this);
             tableElement.appendChild(rowElement);
         }, this);
-        tableElement.setAttribute('style', table.style);
+        if (table.style) {
+            tableElement.setAttribute('style', table.style);
+        }
         return tableElement;
     }
 
