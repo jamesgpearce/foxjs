@@ -22,7 +22,7 @@ var Fox = {
         }
     },
 
-    makeLayout: function(art, options) {
+    makeLayout: function (art, options) {
         var layout;
         if (options && options.type=='flex') {
             layout = this.makeFlex(art, options);
@@ -30,11 +30,77 @@ var Fox = {
         return layout || this.makeTable(art, options);
     },
 
-    makeFlex: function(art, options) {
-        return null;
+    makeFlex: function (art, options) {
+
+        options = this.utils.merge({
+            output: 'node',
+            debug: false,
+            map: {},
+            styles: {}
+        }, options);
+
+        var nodes = [];
+
+        var makeFlexH = function (section) {
+            var solids = [];
+            for (var y = section.top; y <= section.bottom; y++) {
+                var solid = true;
+                for (var x = section.left; x <= section.right; x++) {
+                    if (art[y][x] != '+' && art[y][x] != '-') {
+                        solid = false;
+                        break;
+                    }
+                }
+                if (solid) {
+                    solids.push(y);
+                    console.log ('H:' + y);
+                }
+            }
+            section.children = [];
+            if (solids.length > 2) {
+                for (var s = 1, solidsLength = solids.length; s < solidsLength; s++) {
+                    var childSection = {left:section.left, top:solids[s-1], right:section.right, bottom:solids[s]};
+                    makeFlexV(childSection)
+                    section.children.push(childSection);
+                };
+            }
+        }
+
+        var makeFlexV = function (section) {
+            var solids = [];
+            for (var x = section.left; x <= section.right; x++) {
+                var solid = true;
+                for (var y = section.top; y <= section.bottom; y++) {
+                    if (art[y][x] != '+' && art[y][x] != '|') {
+                        solid = false;
+                        break;
+                    }
+                }
+                if (solid) {
+                    solids.push(x);
+                    console.log ('V:' + x);
+                }
+            }
+            section.children = [];
+            if (solids.length > 2) {
+                for (var s = 1, solidsLength = solids.length; s < solidsLength; s++) {
+                    var childSection = {left:solids[s-1], top:section.top, right:solids[s], bottom:section.bottom};
+                    makeFlexH(childSection)
+                    section.children.push(childSection);
+                };
+            }
+        }
+
+        var mainSection = {left:0, top:0, right:art[0].length-1, bottom:art.length-1};
+        makeFlexH(mainSection);
+        console.log(mainSection);
+
+        return null; // not implemented ;-)
+
     },
 
-    makeTable: function(art, options) {
+
+    makeTable: function (art, options) {
 
         options = this.utils.merge({
             output: 'node',

@@ -16,10 +16,25 @@
 <script>
 [
 
+//{title: 'Flex testing', func:
+//function () {
+//    document.body.appendChild(
+//        Fox.makeFlex([
+//            "+---+-------+",
+//            "|A  |B      |",
+//            "|   +-------+",
+//            "|   |       |",
+//            "+---+-------+",
+//            "|C          |",
+//            "+-----------+",
+//        ])
+//    );
+//}},
+
 {title: 'HTMLTableElement of a simple table with one cell', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+",
             "|A  |",
             "+---+",
@@ -31,7 +46,7 @@ function () {
 function () {
     var div = document.createElement('div');
     div.innerHTML = (
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+",
             "|A  |",
             "+---+",
@@ -46,7 +61,7 @@ function () {
 function () {
     var div = document.createElement('div');
     div.innerHTML = JSON.stringify(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+",
             "|A  |",
             "+---+",
@@ -60,7 +75,7 @@ function () {
 {title: 'Multi-rows and columns with debug', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+---+---+",
             "|A  |B  |C  |",
             "+---+---+---+",
@@ -75,7 +90,7 @@ function () {
 {title: 'Cells spanning columns', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+-----------+",
             "|A          |",
             "+---+---+---+",
@@ -90,7 +105,7 @@ function () {
 {title: 'Cells spanning rows', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+---+---+",
             "|A  |B  |C  |",
             "|   +---+---+",
@@ -105,7 +120,7 @@ function () {
 {title: 'Mapping strings, elements or views to cells', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+---+---+",
             "|a  |b  |",
             "+---+---+",
@@ -124,7 +139,7 @@ function () {
 {title: 'Complex spanning', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+-----------+---+",
             "|A          |B  |",
             "|---+-------+---+",
@@ -141,7 +156,7 @@ function () {
 {title: 'Complex spanning with size hints', func:
 function () {
     document.body.appendChild(
-        Fox.makeLayout([
+        Fox.makeTable([
             "+-----------+---+",
             "|a          |b  |",
             "|---+-------+---+",
@@ -152,7 +167,6 @@ function () {
             "|   |e  |f      |",
             "+---+---+-------+",
         ], {
-            debug:true,
             map: {
                 a: "Toolbar",
                 b: "Menu",
