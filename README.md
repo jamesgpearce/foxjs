@@ -144,6 +144,8 @@ Using an object in the same way as for the map above, you can also add specific 
 
 Use the string-based versions of CSS property names as the objects' properties. For example, to specify a maximum width, use <code>'max-width'</code> rather than <code>maxWidth</code>.
 
+You can also set a <code>table</code> property which sets style on the outer table as a whole. And you can also specify a special property <code>'fixed-width'</code> which will generate real <code>max-width</code>, <code>min-width</code> and <code>width</code> properties to all have that same value.
+
 ### debug
 
 As it says on the tin. It's off by default, but set to <code>true</code> to log to the console the variables used while processing the table's art, as well as the outputted raw object. Not really much use to anyone except me for when things don't work properly.

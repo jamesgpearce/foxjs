@@ -10,7 +10,13 @@ var Fox = {
         styleString: function (style) {
             styleString = '';
             for (s in style) {
-                styleString += s + ':' + style[s] + ';';
+                if (s=='fixed-width') {
+                    ['max-width', 'min-width', 'width'].forEach(function (property) {
+                        styleString += property + ':' + style[s] + ';';
+                    });
+                } else {
+                    styleString += s + ':' + style[s] + ';';
+                }
             }
             return styleString;
         }
