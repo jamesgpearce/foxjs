@@ -67,13 +67,11 @@ var Fox = {
             style, styleString;
 
         while (r < rowLength - 1) {
-            console.log(r);
             c = 0;
             tableRow = [];
             y = rows[r];
             y1 = rows[r] + 1;
             while (c < columnLength - 1) {
-                console.log(c);
                 tableCell = {colspan:1, rowspan:1};
                 x = columns[c];
                 x1 = columns[c] + 1;
